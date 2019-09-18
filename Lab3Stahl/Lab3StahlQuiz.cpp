@@ -42,6 +42,17 @@ public:
 	}
 };
 
+class Hanning{
+	int windowSize;
+	int* ogArr;
+	int arrSize;
+	int* filtArr;
+public:
+	Hanning(int wsize,int ogarr[],int asize,int finArr[]);
+	int weightAvg(int startPoint);
+	void filterArray();
+};
+
 int main(){
 	Quiz test(6);
 	for(int i=0;i<=10;i++){
@@ -50,3 +61,36 @@ int main(){
 	}
 	return 0;
 }
+
+Hanning::Hanning(int wsize,int* ogarr,int asize,int* finArr){
+	windowSize=wsize;
+	ogArr=ogarr;
+	arrSize=asize;
+	filtArr=finArr;
+}
+
+int Hanning::weightAvg(int arrIndex){
+	int avgVal=0;
+	if(arrIndex<(windowSize/2)||arrIndex>((arrSize-1)-(windowSize/2))){
+		return avgVal;
+	}
+	else{
+		int skip=2;
+		int weight=(windowSize/2)+1;
+		avgVal+=ogArr[arrIndex]*weight;
+		for(int i=arrIndex+1;i<(arrIndex+(windowSize/2));i++){
+			weight--;
+			avgVal+=weight*ogArr[i];
+			avgVal+=weight*ogArr[i-skip];
+			skip+=2;
+		}
+		avgVal/=windowSize;
+		return avgVal;
+	}
+}
+void Hanning::filterArray(){
+	for(int i=0;i<(arrSize-1);i++){
+		filtArr[i]=weightAvg(i);
+	}
+}
+
