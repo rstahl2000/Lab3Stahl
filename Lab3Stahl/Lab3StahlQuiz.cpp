@@ -10,6 +10,7 @@
 using namespace std;
 #include <time.h>
 #include <stdlib.h>
+#include "TicTacToe.hpp"
 
 class Quiz{
 	int quizNum;
@@ -75,6 +76,8 @@ int main(){
 	testH.printArray(true);
 	testH.printGraph(false);
 	testH.printGraph(true);
+	TicTacToe testToe("Bobby","Chris");
+	testToe.playGame();
 	return 0;
 }
 
