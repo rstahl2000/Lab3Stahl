@@ -51,14 +51,30 @@ public:
 	Hanning(int wsize,int ogarr[],int asize,int finArr[]);
 	int weightAvg(int startPoint);
 	void filterArray();
+	void printGraph(bool filtered);
+	void changeWindow(int newWind);
+	void printArray(bool filtered);
 };
 
 int main(){
-	Quiz test(6);
+	/*Quiz test(6);
 	for(int i=0;i<=10;i++){
 		test.quizUser();
 		test.printScore();
-	}
+	}*/
+	int testArr[9]={3,8,2,5,1,4,6,0,2};
+	int filtArrTest[9];
+	Hanning testH(3,testArr,9,filtArrTest);
+	testH.filterArray();
+	testH.printArray(false);
+	testH.printArray(true);
+	testH.printGraph(false);
+	testH.printGraph(true);
+	testH.changeWindow(5);
+	testH.printArray(false);
+	testH.printArray(true);
+	//testH.printGraph(false);
+	//testH.printGraph(true);
 	return 0;
 }
 
@@ -89,8 +105,64 @@ int Hanning::weightAvg(int arrIndex){
 	}
 }
 void Hanning::filterArray(){
-	for(int i=0;i<(arrSize-1);i++){
-		filtArr[i]=weightAvg(i);
+	for(int i=0;i<arrSize;i++){
+		this->filtArr[i]=weightAvg(i);
 	}
 }
 
+void Hanning::printGraph(bool filtered){
+	int *printArr;
+	if(filtered){
+		printArr=filtArr;
+	}
+	else{
+		printArr=ogArr;
+	}
+	int maxVal=printArr[0];
+	int minVal=printArr[0];
+	for(int i=0;i<arrSize;i++){
+		if (printArr[i]<minVal){
+			minVal=printArr[i];
+		}
+		else if(printArr[i]>maxVal){
+			maxVal=printArr[i];
+		}
+	}
+	int distance=maxVal-minVal;
+	for(int i=0;i<=distance;i++){
+		cout<<maxVal-i<<":";
+		int number=minVal-i;
+		for(int j=0;j<arrSize;j++){
+			if(printArr[j]==number){
+				cout<<"*";
+			}
+			else{
+				cout<<" ";
+			}
+		}
+		cout<<endl;
+	}
+}
+
+void Hanning::changeWindow(int newWind){
+	if(newWind%2==0){
+		newWind--;
+	}
+	this->windowSize=newWind;
+	filterArray();
+}
+
+
+void Hanning::printArray(bool filtered){
+	int* printArr;
+	if(filtered){
+		printArr=filtArr;
+	}
+	else{
+		printArr=ogArr;
+	}
+	for(int i=0;i<arrSize;i++){
+		cout<<printArr[i]<<" ";
+	}
+	cout<<endl;
+}
