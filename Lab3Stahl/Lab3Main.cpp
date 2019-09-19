@@ -1,7 +1,7 @@
- /* Lab2.cpp
+ /* Lab3 Main
  *Sun Bilin
  *  Created on: Sep 3, 2019
- *      Author: robertstahl and Chris Tiso
+ *      Author: Robert Stahl and Chris Tiso
  */
 
 
@@ -11,7 +11,9 @@ using namespace std;
 #include <time.h>
 #include <stdlib.h>
 #include "TicTacToe.hpp"
+#include "Box.hpp"
 
+//Quiz Class Definition
 class Quiz{
 	int quizNum;
 	int qRight;
@@ -43,6 +45,7 @@ public:
 	}
 };
 
+//Hanning Filter Class Declaration
 class Hanning{
 	int windowSize;
 	int* ogArr;
@@ -58,11 +61,15 @@ public:
 };
 
 int main(){
-	/*Quiz test(6);
+	//Test For Quiz. Uses 6 as the multiple;
+	Quiz test(6);
 	for(int i=0;i<=10;i++){
 		test.quizUser();
 		test.printScore();
-	}*/
+	}
+	cout<<"-----------------------"<<endl;//For Better Console Spacing
+
+	//Hanning Test
 	int testArr[9]={3,8,2,5,1,4,6,0,2};
 	int filtArrTest[9];
 	Hanning testH(3,testArr,9,filtArrTest);
@@ -76,10 +83,26 @@ int main(){
 	testH.printArray(true);
 	testH.printGraph(false);
 	testH.printGraph(true);
+	cout<<"-----------------------"<<endl;//For Better Console Spacing
+
+	//Tic Tac Toe Test
 	TicTacToe testToe("Bobby","Chris");
 	testToe.playGame();
+	cout<<"-----------------------"<<endl;//For Better Console Spacing
+
+	//Box Operator Test
+	bool boxTest;
+	Box Box1(3.3, 1.2, 1.5);
+	Box Box2(8.5, 6.0, 2.0);
+	boxTest=Box1==Box2;
+	cout<<boxTest<<endl;
+	Box Box3(3.3,1.2,1.5);
+	boxTest=Box1==Box3;
+	cout<<boxTest<<endl;
 	return 0;
 }
+
+//Hanning Function Definitions
 
 Hanning::Hanning(int wsize,int* ogarr,int asize,int* finArr){
 	windowSize=wsize;

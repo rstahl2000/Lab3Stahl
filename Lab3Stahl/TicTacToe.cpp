@@ -2,7 +2,7 @@
  * TicTacToe.cpp
  *
  *  Created on: Sep 19, 2019
- *      Author: robertstahl
+ *      Author: Robert Stahl and Chris Tiso
  */
 
 #include "TicTacToe.hpp"

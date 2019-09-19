@@ -2,7 +2,7 @@
  * TicTacToe.hpp
  *
  *  Created on: Sep 19, 2019
- *      Author: robertstahl
+ *      Author: Robert Stahl and Chris Tiso
  */
 
 #ifndef TICTACTOE_HPP_
