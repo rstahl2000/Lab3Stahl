@@ -73,8 +73,8 @@ int main(){
 	testH.changeWindow(5);
 	testH.printArray(false);
 	testH.printArray(true);
-	//testH.printGraph(false);
-	//testH.printGraph(true);
+	testH.printGraph(false);
+	testH.printGraph(true);
 	return 0;
 }
 
@@ -92,15 +92,18 @@ int Hanning::weightAvg(int arrIndex){
 	}
 	else{
 		int skip=2;
+		int divisor=0;
 		int weight=(windowSize/2)+1;
 		avgVal+=ogArr[arrIndex]*weight;
-		for(int i=arrIndex+1;i<(arrIndex+(windowSize/2));i++){
+		divisor+=weight;
+		for(int i=arrIndex+1;i<=(arrIndex+(windowSize/2));i++){
 			weight--;
+			divisor+=2*weight;
 			avgVal+=weight*ogArr[i];
 			avgVal+=weight*ogArr[i-skip];
 			skip+=2;
 		}
-		avgVal/=windowSize;
+		avgVal/=divisor;
 		return avgVal;
 	}
 }
@@ -131,7 +134,7 @@ void Hanning::printGraph(bool filtered){
 	int distance=maxVal-minVal;
 	for(int i=0;i<=distance;i++){
 		cout<<maxVal-i<<":";
-		int number=minVal-i;
+		int number=maxVal-i;
 		for(int j=0;j<arrSize;j++){
 			if(printArr[j]==number){
 				cout<<"*";
