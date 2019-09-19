@@ -77,11 +77,13 @@ int main(){
 	testH.printArray(false);
 	testH.printArray(true);
 	testH.printGraph(false);
+	cout<<"-----------------------"<<endl;//For Better Console Spacing
 	testH.printGraph(true);
 	testH.changeWindow(5);
 	testH.printArray(false);
 	testH.printArray(true);
 	testH.printGraph(false);
+	cout<<"-----------------------"<<endl;//For Better Console Spacing
 	testH.printGraph(true);
 	cout<<"-----------------------"<<endl;//For Better Console Spacing
 
@@ -95,10 +97,10 @@ int main(){
 	Box Box1(3.3, 1.2, 1.5);
 	Box Box2(8.5, 6.0, 2.0);
 	boxTest=Box1==Box2;
-	cout<<boxTest<<endl;
+	cout<<boxTest<<endl;//Should Print 0
 	Box Box3(3.3,1.2,1.5);
 	boxTest=Box1==Box3;
-	cout<<boxTest<<endl;
+	cout<<boxTest<<endl;//Should Print 1
 	return 0;
 }
 

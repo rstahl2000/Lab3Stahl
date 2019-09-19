@@ -1,0 +1,2 @@
+#CISC220 Lab 3
+Each class is made using the method described before it. Quiz and Hanning are defined in the Lab3Main.cpp file. Tic Tac Toe and the Box class are defined with seperate header and source files. The main function contains all the tests. The folder labeled Lab 3 Screenshots has the screenshots of the project building and the console when ran.
